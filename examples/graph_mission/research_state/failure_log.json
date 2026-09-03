@@ -1,0 +1,32 @@
+[
+  {
+    "experiment": "exp_de9672a659",
+    "hypothesis": "",
+    "kind": "incorrect_output",
+    "prediction": "(correctness)",
+    "expected": "distances equal to the reference",
+    "observed": "bfs_unit returned wrong distances on 'dense_random'",
+    "action": "candidate excluded from performance rankings on this topology",
+    "ts": 1786627404.607929
+  },
+  {
+    "experiment": "exp_de9672a659",
+    "hypothesis": "",
+    "kind": "incorrect_output",
+    "prediction": "(correctness)",
+    "expected": "distances equal to the reference",
+    "observed": "bfs_unit returned wrong distances on 'grid_2d'",
+    "action": "candidate excluded from performance rankings on this topology",
+    "ts": 1786627404.6080503
+  },
+  {
+    "experiment": "exp_de9672a659",
+    "hypothesis": "",
+    "kind": "incorrect_output",
+    "prediction": "(correctness)",
+    "expected": "distances equal to the reference",
+    "observed": "bfs_unit returned wrong distances on 'sparse_random'",
+    "action": "candidate excluded from performance rankings on this topology",
+    "ts": 1786627404.6081195
+  }
+]

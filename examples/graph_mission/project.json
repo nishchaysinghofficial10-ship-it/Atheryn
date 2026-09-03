@@ -1,0 +1,24 @@
+{
+  "question": "Which single-source shortest-path method wins on which graph topology at the tested sizes, does the machine-independent relaxation count agree with the wall-clock ranking, and where is the BFS candidate actually correct?",
+  "domain": "graphbench",
+  "domain_config": {
+    "sizes": [
+      128,
+      512
+    ],
+    "trials": 5,
+    "seed": 4242,
+    "regimes": [
+      "sparse_random",
+      "dense_random",
+      "grid_2d",
+      "unit_weight"
+    ],
+    "timeout_s": 600
+  },
+  "profile": "graph_standard",
+  "phase": "CREATED",
+  "created_at": 1786627400.6714277,
+  "atheryn_version": "1.0.0",
+  "brain": "mock"
+}

@@ -1,0 +1,32 @@
+# Interpreter and build leftovers
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Local mission output (examples/ is shipped evidence and IS tracked)
+runs/
+
+# Release archives are built by the release process, never committed
+*.zip
+
+# Credentials never enter the repo; ATHERYN reads ANTHROPIC_API_KEY from the env
+.env
+.env.*
+!.env.example
+
+# OS and editor noise
+.DS_Store
+.idea/
+.vscode/

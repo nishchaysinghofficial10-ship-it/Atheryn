@@ -1,0 +1,250 @@
+{
+  "hyp_f3a5a9f693": {
+    "id": "hyp_f3a5a9f693",
+    "statement": "Dijkstra with a binary heap is fastest on sparse random graphs at the tested sizes.",
+    "rationale": "Heap ordering avoids the O(V^2) scan that dominates the array variant when the graph is sparse.",
+    "status": "weakened",
+    "predictions": [
+      {
+        "id": "pred_90e5b058b0",
+        "text": "dijkstra_heap is fastest on sparse_random",
+        "check": {
+          "type": "fastest_on",
+          "algorithm": "dijkstra_heap",
+          "regime": "sparse_random"
+        },
+        "outcome": "inconclusive",
+        "detail": "spfa leads on 'sparse_random' but is not decisively separated from dijkstra_heap: uncertainty_overlap (gap 0.114 ms <= 3x combined SEM 0.128 ms) [n=512, 5 trials]"
+      }
+    ],
+    "supporting_evidence": [],
+    "contradicting_evidence": [],
+    "importance": 0.8,
+    "cost_estimate": 1.0,
+    "tags": [
+      "counterargued"
+    ],
+    "tested_in": [
+      "exp_de9672a659"
+    ],
+    "assumptions": [],
+    "scope": "",
+    "revisions": [
+      {
+        "ts": 1786627404.608437,
+        "from": "under_test",
+        "to": "weakened",
+        "reason": "predictions not resolvable at 5 trials in exp_de9672a659"
+      }
+    ],
+    "created_at": 1786627400.8323603,
+    "updated_at": 1786627404.6084547
+  },
+  "hyp_6076ea0451": {
+    "id": "hyp_6076ea0451",
+    "statement": "The array-scan Dijkstra beats the heap variant on dense graphs, where the scan cost is amortised.",
+    "rationale": "With E ~ V^2/8 the heap's per-edge push cost outweighs the array's per-vertex scan.",
+    "status": "weakened",
+    "predictions": [
+      {
+        "id": "pred_38906d1143",
+        "text": "dijkstra_array beats dijkstra_heap on dense_random",
+        "check": {
+          "type": "beats",
+          "algorithm": "dijkstra_array",
+          "than": "dijkstra_heap",
+          "regime": "dense_random",
+          "min_pct": 0.0
+        },
+        "outcome": "inconclusive",
+        "detail": "dijkstra_array vs dijkstra_heap on 'dense_random': -31% but not decisive (uncertainty_overlap (gap 7.621 ms <= 3x combined SEM 14.590 ms)) [n=512, 5 trials]"
+      }
+    ],
+    "supporting_evidence": [],
+    "contradicting_evidence": [],
+    "importance": 0.75,
+    "cost_estimate": 1.0,
+    "tags": [],
+    "tested_in": [
+      "exp_de9672a659"
+    ],
+    "assumptions": [],
+    "scope": "",
+    "revisions": [
+      {
+        "ts": 1786627404.6086164,
+        "from": "under_test",
+        "to": "weakened",
+        "reason": "predictions not resolvable at 5 trials in exp_de9672a659"
+      }
+    ],
+    "created_at": 1786627400.8323715,
+    "updated_at": 1786627404.6086214
+  },
+  "hyp_96edc044f0": {
+    "id": "hyp_96edc044f0",
+    "statement": "Bellman-Ford performs the most edge relaxations of any candidate on every tested topology.",
+    "rationale": "It relaxes every edge on every pass rather than settling vertices once.",
+    "status": "provisionally_supported",
+    "predictions": [
+      {
+        "id": "pred_c725f15fde",
+        "text": "bellman_ford has the highest relaxation count",
+        "check": {
+          "type": "most_relaxations",
+          "algorithm": "bellman_ford"
+        },
+        "outcome": "confirmed",
+        "detail": "highest relaxation count by topology: {'sparse_random': 'bellman_ford', 'dense_random': 'bellman_ford', 'grid_2d': 'bellman_ford', 'unit_weight': 'bellman_ford'} [n=512]"
+      }
+    ],
+    "supporting_evidence": [
+      "evd_86e7ec091a",
+      "evd_d9dd10d694"
+    ],
+    "contradicting_evidence": [],
+    "importance": 0.7,
+    "cost_estimate": 1.0,
+    "tags": [
+      "replicated",
+      "falsification_done"
+    ],
+    "tested_in": [
+      "exp_de9672a659",
+      "exp_80c64940b6"
+    ],
+    "assumptions": [],
+    "scope": "",
+    "revisions": [
+      {
+        "ts": 1786627404.6086726,
+        "from": "under_test",
+        "to": "provisionally_supported",
+        "reason": "all predictions confirmed in exp_de9672a659"
+      }
+    ],
+    "created_at": 1786627400.8323832,
+    "updated_at": 1786627407.575657
+  },
+  "hyp_e6bc85dbcd": {
+    "id": "hyp_e6bc85dbcd",
+    "statement": "SPFA performs fewer relaxations than Bellman-Ford on sparse random graphs.",
+    "rationale": "Queue-driven relaxation revisits only vertices whose distance improved.",
+    "status": "accepted_with_scope",
+    "predictions": [
+      {
+        "id": "pred_b76f766e0b",
+        "text": "spfa uses fewer relaxations than bellman_ford on sparse_random",
+        "check": {
+          "type": "fewer_relaxations",
+          "algorithm": "spfa",
+          "than": "bellman_ford",
+          "regime": "sparse_random"
+        },
+        "outcome": "confirmed",
+        "detail": "spfa performed 4,907 relaxations vs bellman_ford 21,476 on 'sparse_random' (+77%); exact counts, machine-independent [n=512]"
+      }
+    ],
+    "supporting_evidence": [
+      "evd_dbc7dc2c6f",
+      "evd_14634d9b08"
+    ],
+    "contradicting_evidence": [],
+    "importance": 0.7,
+    "cost_estimate": 1.0,
+    "tags": [
+      "replicated",
+      "falsification_done",
+      "falsification_survived"
+    ],
+    "tested_in": [
+      "exp_de9672a659",
+      "exp_3079fc8021"
+    ],
+    "assumptions": [],
+    "scope": "holds at n<=2x tested sizes on its original topology; extends to ['long_chain', 'scale_free']",
+    "revisions": [
+      {
+        "ts": 1786627404.6086993,
+        "from": "under_test",
+        "to": "provisionally_supported",
+        "reason": "all predictions confirmed in exp_de9672a659"
+      },
+      {
+        "ts": 1786627415.7722516,
+        "from": "provisionally_supported",
+        "to": "accepted_with_scope",
+        "reason": "replicated + survived falsification; scope: holds at n<=2x tested sizes on its original topology; extends to ['long_chain', 'scale_free']"
+      }
+    ],
+    "created_at": 1786627400.8323913,
+    "updated_at": 1786627415.7722623
+  },
+  "hyp_0eae29898f": {
+    "id": "hyp_0eae29898f",
+    "statement": "The BFS candidate returns correct distances on unit-weight graphs and incorrect distances on every weighted topology.",
+    "rationale": "BFS assumes uniform edge cost; the benchmark should detect the boundary rather than assume it.",
+    "status": "accepted_with_scope",
+    "predictions": [
+      {
+        "id": "pred_614fed1209",
+        "text": "bfs_unit is correct on unit_weight",
+        "check": {
+          "type": "correct_on",
+          "algorithm": "bfs_unit",
+          "regime": "unit_weight"
+        },
+        "outcome": "confirmed",
+        "detail": "bfs_unit on 'unit_weight' returned correct distances [n=512, 5 trials]"
+      },
+      {
+        "id": "pred_fdab97b162",
+        "text": "bfs_unit is incorrect on sparse_random",
+        "check": {
+          "type": "incorrect_on",
+          "algorithm": "bfs_unit",
+          "regime": "sparse_random"
+        },
+        "outcome": "confirmed",
+        "detail": "bfs_unit on 'sparse_random' returned INCORRECT distances [n=512, 5 trials]"
+      }
+    ],
+    "supporting_evidence": [
+      "evd_21694ffc12",
+      "evd_3060dc0ef9",
+      "evd_5fbccff0e1",
+      "evd_7aefddd33b"
+    ],
+    "contradicting_evidence": [],
+    "importance": 0.9,
+    "cost_estimate": 1.0,
+    "tags": [
+      "correctness_boundary",
+      "replicated",
+      "falsification_done",
+      "falsification_survived"
+    ],
+    "tested_in": [
+      "exp_de9672a659",
+      "exp_6bd2d789f8"
+    ],
+    "assumptions": [],
+    "scope": "holds at n<=2x tested sizes on its original topology; does NOT extend to ['long_chain', 'scale_free']",
+    "revisions": [
+      {
+        "ts": 1786627404.6087258,
+        "from": "under_test",
+        "to": "provisionally_supported",
+        "reason": "all predictions confirmed in exp_de9672a659"
+      },
+      {
+        "ts": 1786627415.772398,
+        "from": "provisionally_supported",
+        "to": "accepted_with_scope",
+        "reason": "replicated + survived falsification; scope: holds at n<=2x tested sizes on its original topology; does NOT extend to ['long_chain', 'scale_free']"
+      }
+    ],
+    "created_at": 1786627400.8324044,
+    "updated_at": 1786627415.7723997
+  }
+}

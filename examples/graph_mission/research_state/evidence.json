@@ -1,0 +1,122 @@
+{
+  "evd_9a35cf1280": {
+    "id": "evd_9a35cf1280",
+    "target_id": "hyp_f3a5a9f693",
+    "direction": "inconclusive",
+    "strength": 0.125,
+    "kind": "experiment",
+    "summary": "[round 1] dijkstra_heap is fastest on sparse_random: inconclusive (spfa leads on 'sparse_random' but is not decisively separated from dijkstra_heap: uncertainty_overlap (gap 0.114 ms <= 3x combined SEM 0.128 ms) [n=512, 5 trials])",
+    "experiment_id": "exp_de9672a659",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627404.6084173
+  },
+  "evd_93b8ede2da": {
+    "id": "evd_93b8ede2da",
+    "target_id": "hyp_6076ea0451",
+    "direction": "inconclusive",
+    "strength": 0.153,
+    "kind": "experiment",
+    "summary": "[round 1] dijkstra_array beats dijkstra_heap on dense_random: inconclusive (dijkstra_array vs dijkstra_heap on 'dense_random': -31% but not decisive (uncertainty_overlap (gap 7.621 ms <= 3x combined SEM 14.590 ms)) [n=512, 5 trials])",
+    "experiment_id": "exp_de9672a659",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627404.6086085
+  },
+  "evd_86e7ec091a": {
+    "id": "evd_86e7ec091a",
+    "target_id": "hyp_96edc044f0",
+    "direction": "supports",
+    "strength": 0.7,
+    "kind": "experiment",
+    "summary": "[round 1] bellman_ford has the highest relaxation count: confirmed (highest relaxation count by topology: {'sparse_random': 'bellman_ford', 'dense_random': 'bellman_ford', 'grid_2d': 'bellman_ford', 'unit_weight': 'bellman_ford'} [n=512])",
+    "experiment_id": "exp_de9672a659",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627404.608668
+  },
+  "evd_dbc7dc2c6f": {
+    "id": "evd_dbc7dc2c6f",
+    "target_id": "hyp_e6bc85dbcd",
+    "direction": "supports",
+    "strength": 0.772,
+    "kind": "experiment",
+    "summary": "[round 1] spfa uses fewer relaxations than bellman_ford on sparse_random: confirmed (spfa performed 4,907 relaxations vs bellman_ford 21,476 on 'sparse_random' (+77%); exact counts, machine-independent [n=512])",
+    "experiment_id": "exp_de9672a659",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627404.6086965
+  },
+  "evd_21694ffc12": {
+    "id": "evd_21694ffc12",
+    "target_id": "hyp_0eae29898f",
+    "direction": "supports",
+    "strength": 0.9,
+    "kind": "experiment",
+    "summary": "[round 1] bfs_unit is correct on unit_weight: confirmed (bfs_unit on 'unit_weight' returned correct distances [n=512, 5 trials])",
+    "experiment_id": "exp_de9672a659",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627404.6087134
+  },
+  "evd_3060dc0ef9": {
+    "id": "evd_3060dc0ef9",
+    "target_id": "hyp_0eae29898f",
+    "direction": "supports",
+    "strength": 0.9,
+    "kind": "experiment",
+    "summary": "[round 1] bfs_unit is incorrect on sparse_random: confirmed (bfs_unit on 'sparse_random' returned INCORRECT distances [n=512, 5 trials])",
+    "experiment_id": "exp_de9672a659",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627404.6087234
+  },
+  "evd_d9dd10d694": {
+    "id": "evd_d9dd10d694",
+    "target_id": "hyp_96edc044f0",
+    "direction": "supports",
+    "strength": 0.7,
+    "kind": "experiment",
+    "summary": "[replication] bellman_ford has the highest relaxation count: confirmed (highest relaxation count by topology: {'sparse_random': 'bellman_ford', 'dense_random': 'bellman_ford', 'grid_2d': 'bellman_ford', 'unit_weight': 'bellman_ford'} [n=512])",
+    "experiment_id": "exp_80c64940b6",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627407.5754619
+  },
+  "evd_14634d9b08": {
+    "id": "evd_14634d9b08",
+    "target_id": "hyp_e6bc85dbcd",
+    "direction": "supports",
+    "strength": 0.741,
+    "kind": "experiment",
+    "summary": "[replication] spfa uses fewer relaxations than bellman_ford on sparse_random: confirmed (spfa performed 4,763 relaxations vs bellman_ford 18,396 on 'sparse_random' (+74%); exact counts, machine-independent [n=512])",
+    "experiment_id": "exp_3079fc8021",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627410.5828662
+  },
+  "evd_5fbccff0e1": {
+    "id": "evd_5fbccff0e1",
+    "target_id": "hyp_0eae29898f",
+    "direction": "supports",
+    "strength": 0.9,
+    "kind": "experiment",
+    "summary": "[replication] bfs_unit is correct on unit_weight: confirmed (bfs_unit on 'unit_weight' returned correct distances [n=512, 5 trials])",
+    "experiment_id": "exp_6bd2d789f8",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627413.670945
+  },
+  "evd_7aefddd33b": {
+    "id": "evd_7aefddd33b",
+    "target_id": "hyp_0eae29898f",
+    "direction": "supports",
+    "strength": 0.9,
+    "kind": "experiment",
+    "summary": "[replication] bfs_unit is incorrect on sparse_random: confirmed (bfs_unit on 'sparse_random' returned INCORRECT distances [n=512, 5 trials])",
+    "experiment_id": "exp_6bd2d789f8",
+    "source_id": "",
+    "payload": {},
+    "created_at": 1786627413.6709666
+  }
+}

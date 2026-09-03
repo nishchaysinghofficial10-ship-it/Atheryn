@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "atheryn-research"
+version = "2.1.0"
+description = "ATHERYN - persistent computational research engine"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+# Keep this list honest: a version belongs here only after CI and the verification run exercise it.
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: POSIX :: Linux",
+]
+
+[project.scripts]
+atheryn = "atheryn.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["atheryn*"]

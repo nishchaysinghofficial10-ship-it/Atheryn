@@ -1,0 +1,322 @@
+{
+  "exp_de9672a659": {
+    "id": "exp_de9672a659",
+    "title": "Benchmark round 1 covering 5 hypothesis(es)",
+    "hypothesis_ids": [
+      "hyp_f3a5a9f693",
+      "hyp_6076ea0451",
+      "hyp_96edc044f0",
+      "hyp_e6bc85dbcd",
+      "hyp_0eae29898f"
+    ],
+    "design": {
+      "kind": "benchmark",
+      "round": 1,
+      "algorithms": [
+        "dijkstra_heap",
+        "dijkstra_array",
+        "bellman_ford",
+        "spfa",
+        "bfs_unit"
+      ],
+      "regimes": [
+        "sparse_random",
+        "dense_random",
+        "grid_2d",
+        "unit_weight"
+      ],
+      "sizes": [
+        128,
+        512
+      ],
+      "trials": 5,
+      "seed": 4242,
+      "timeout_s": 600,
+      "hypothesis_ids": [
+        "hyp_f3a5a9f693",
+        "hyp_6076ea0451",
+        "hyp_96edc044f0",
+        "hyp_e6bc85dbcd",
+        "hyp_0eae29898f"
+      ]
+    },
+    "status": "completed",
+    "dir": "experiments/exp_de9672a659",
+    "duration_s": 3.7557627449999984,
+    "summary": {
+      "measurements": 40
+    },
+    "error": "",
+    "created_at": 1786627400.8390727,
+    "finished_at": 1786627404.6063144
+  },
+  "exp_80c64940b6": {
+    "id": "exp_80c64940b6",
+    "title": "Replication of hyp_96edc044f0",
+    "hypothesis_ids": [
+      "hyp_96edc044f0"
+    ],
+    "design": {
+      "kind": "benchmark",
+      "round": 2,
+      "algorithms": [
+        "dijkstra_heap",
+        "dijkstra_array",
+        "bellman_ford",
+        "spfa",
+        "bfs_unit"
+      ],
+      "regimes": [
+        "sparse_random",
+        "dense_random",
+        "grid_2d",
+        "unit_weight"
+      ],
+      "sizes": [
+        512
+      ],
+      "trials": 5,
+      "seed": 5242,
+      "timeout_s": 600,
+      "hypothesis_ids": [
+        "hyp_96edc044f0"
+      ]
+    },
+    "status": "completed",
+    "dir": "experiments/exp_80c64940b6",
+    "duration_s": 2.946184303999985,
+    "summary": {
+      "measurements": 20
+    },
+    "error": "",
+    "created_at": 1786627404.624191,
+    "finished_at": 1786627407.5739236
+  },
+  "exp_3079fc8021": {
+    "id": "exp_3079fc8021",
+    "title": "Replication of hyp_e6bc85dbcd",
+    "hypothesis_ids": [
+      "hyp_e6bc85dbcd"
+    ],
+    "design": {
+      "kind": "benchmark",
+      "round": 2,
+      "algorithms": [
+        "dijkstra_heap",
+        "dijkstra_array",
+        "bellman_ford",
+        "spfa",
+        "bfs_unit"
+      ],
+      "regimes": [
+        "sparse_random",
+        "dense_random",
+        "grid_2d",
+        "unit_weight"
+      ],
+      "sizes": [
+        512
+      ],
+      "trials": 5,
+      "seed": 5242,
+      "timeout_s": 600,
+      "hypothesis_ids": [
+        "hyp_e6bc85dbcd"
+      ]
+    },
+    "status": "completed",
+    "dir": "experiments/exp_3079fc8021",
+    "duration_s": 2.9950952399999835,
+    "summary": {
+      "measurements": 20
+    },
+    "error": "",
+    "created_at": 1786627407.58308,
+    "finished_at": 1786627410.5816395
+  },
+  "exp_6bd2d789f8": {
+    "id": "exp_6bd2d789f8",
+    "title": "Replication of hyp_0eae29898f",
+    "hypothesis_ids": [
+      "hyp_0eae29898f"
+    ],
+    "design": {
+      "kind": "benchmark",
+      "round": 2,
+      "algorithms": [
+        "dijkstra_heap",
+        "dijkstra_array",
+        "bellman_ford",
+        "spfa",
+        "bfs_unit"
+      ],
+      "regimes": [
+        "sparse_random",
+        "dense_random",
+        "grid_2d",
+        "unit_weight"
+      ],
+      "sizes": [
+        512
+      ],
+      "trials": 5,
+      "seed": 5242,
+      "timeout_s": 600,
+      "hypothesis_ids": [
+        "hyp_0eae29898f"
+      ]
+    },
+    "status": "completed",
+    "dir": "experiments/exp_6bd2d789f8",
+    "duration_s": 3.074719651999999,
+    "summary": {
+      "measurements": 20
+    },
+    "error": "",
+    "created_at": 1786627410.5915163,
+    "finished_at": 1786627413.6695993
+  },
+  "exp_42efd0db8f": {
+    "id": "exp_42efd0db8f",
+    "title": "Falsification probe of hyp_e6bc85dbcd",
+    "hypothesis_ids": [
+      "hyp_e6bc85dbcd"
+    ],
+    "design": {
+      "kind": "falsification",
+      "round": 9,
+      "algorithms": [
+        "dijkstra_heap",
+        "dijkstra_array",
+        "bellman_ford",
+        "spfa",
+        "bfs_unit"
+      ],
+      "regimes": [
+        "long_chain",
+        "scale_free",
+        "sparse_random"
+      ],
+      "sizes": [
+        1024
+      ],
+      "trials": 5,
+      "seed": 12019,
+      "timeout_s": 600,
+      "hypothesis_ids": [
+        "hyp_e6bc85dbcd"
+      ],
+      "probe_checks": [
+        {
+          "label": "boundary:sparse_random",
+          "check": {
+            "type": "fewer_relaxations",
+            "algorithm": "spfa",
+            "than": "bellman_ford",
+            "regime": "sparse_random"
+          },
+          "role": "boundary"
+        },
+        {
+          "label": "scope:long_chain",
+          "check": {
+            "type": "fewer_relaxations",
+            "algorithm": "spfa",
+            "than": "bellman_ford",
+            "regime": "long_chain"
+          },
+          "role": "scope"
+        },
+        {
+          "label": "scope:scale_free",
+          "check": {
+            "type": "fewer_relaxations",
+            "algorithm": "spfa",
+            "than": "bellman_ford",
+            "regime": "scale_free"
+          },
+          "role": "scope"
+        }
+      ]
+    },
+    "status": "completed",
+    "dir": "experiments/exp_42efd0db8f",
+    "duration_s": 1.081210040000002,
+    "summary": {
+      "measurements": 15
+    },
+    "error": "",
+    "created_at": 1786627413.6877563,
+    "finished_at": 1786627414.7720768
+  },
+  "exp_31f8e1690f": {
+    "id": "exp_31f8e1690f",
+    "title": "Falsification probe of hyp_0eae29898f",
+    "hypothesis_ids": [
+      "hyp_0eae29898f"
+    ],
+    "design": {
+      "kind": "falsification",
+      "round": 9,
+      "algorithms": [
+        "dijkstra_heap",
+        "dijkstra_array",
+        "bellman_ford",
+        "spfa",
+        "bfs_unit"
+      ],
+      "regimes": [
+        "long_chain",
+        "scale_free",
+        "unit_weight"
+      ],
+      "sizes": [
+        1024
+      ],
+      "trials": 5,
+      "seed": 12019,
+      "timeout_s": 600,
+      "hypothesis_ids": [
+        "hyp_0eae29898f"
+      ],
+      "probe_checks": [
+        {
+          "label": "boundary:unit_weight",
+          "check": {
+            "type": "correct_on",
+            "algorithm": "bfs_unit",
+            "regime": "unit_weight"
+          },
+          "role": "boundary"
+        },
+        {
+          "label": "scope:long_chain",
+          "check": {
+            "type": "correct_on",
+            "algorithm": "bfs_unit",
+            "regime": "long_chain"
+          },
+          "role": "scope"
+        },
+        {
+          "label": "scope:scale_free",
+          "check": {
+            "type": "correct_on",
+            "algorithm": "bfs_unit",
+            "regime": "scale_free"
+          },
+          "role": "scope"
+        }
+      ]
+    },
+    "status": "completed",
+    "dir": "experiments/exp_31f8e1690f",
+    "duration_s": 0.9737216869999941,
+    "summary": {
+      "measurements": 15
+    },
+    "error": "",
+    "created_at": 1786627414.784229,
+    "finished_at": 1786627415.7617817
+  }
+}
