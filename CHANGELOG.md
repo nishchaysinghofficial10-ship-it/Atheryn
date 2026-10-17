@@ -5,6 +5,20 @@ Entries stay short on purpose: say what changed, why it mattered, and where the 
 All notable changes. Every number here was produced by a command run at the
 commit it describes.
 
+## [Unreleased] — web interface
+
+### Added
+- **Web front end** (`web/`): a scroll-driven site built from the shipped
+  evidence (flagship evaluation, a replay of `graph_mission` from its own event
+  log) and a mission-control page for every mission. Vanilla JS, no build step.
+- **HTTP API** (`atheryn_server/`, standard library only): read any mission;
+  create, run, pause, cancel, verify and replay missions on the server. Shipped
+  examples are read-only. Public-instance caps (profiles, budgets, one
+  executing mission, per-address creation limit, optional access token).
+- `Dockerfile` and `render.yaml`; CI job that builds the image, boots it as an
+  unprivileged user and completes a mission over HTTP.
+- Tests: `tests/test_web_api.py`. Docs: `docs/DEPLOYMENT.md`.
+
 ## [2.1.0] — architecture gaps closed, live autonomous retrieval
 
 **268 tests**, CPython 3.10–3.14 on Linux x86-64.

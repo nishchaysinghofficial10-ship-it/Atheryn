@@ -62,6 +62,21 @@ python -m atheryn status --dir runs/demo
 python -m atheryn report --dir runs/demo          # the research dossier
 ```
 
+## Web interface
+
+```bash
+python -m atheryn_server --port 8000      # open http://127.0.0.1:8000
+```
+
+A scrolling site that explains the method with the shipped evidence, plus
+mission control for any mission: live lifecycle, hypothesis ledger, ranked
+results (incorrect candidates struck out, never ranked), the generated code of
+every experiment, critic attacks, decisions, the event log and the dossier.
+The lab starts real missions over a small HTTP API — standard library only,
+built on the same calls the CLI uses. New missions need Linux or macOS;
+elsewhere the site is read-only. Deploy with the `Dockerfile` or `render.yaml`;
+details, limits and the API in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
+
 ## Supported domains
 
 | Domain | Question shape | Metrics |

@@ -145,3 +145,40 @@ PY
           python -m atheryn run --dir "$RUNNER_TEMP/ci_resume" --steps 2
           python -m atheryn run --dir "$RUNNER_TEMP/ci_resume"
           python -m atheryn verify --dir "$RUNNER_TEMP/ci_resume"
+
+  web-image:
+    name: web image (build, boot, run a mission over HTTP)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: docker build -t atheryn-web .
+      - name: Boot as the unprivileged user and probe
+        run: |
+          set -euo pipefail
+          docker run -d --name atheryn-web -p 8000:8000 atheryn-web
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:8000/api/health && break
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8000/api/health | grep -q '"can_execute":true'
+          curl -fsS http://127.0.0.1:8000/ | grep -q 'ATHERYN'
+          curl -fsS http://127.0.0.1:8000/api/missions/graph_mission | grep -q '"phase":"COMPLETED"'
+      - name: A mission created over HTTP completes and verifies
+        run: |
+          set -euo pipefail
+          id=$(curl -fsS -X POST -H 'Content-Type: application/json' \
+            -d '{"question":"CI web smoke: which sort wins where?","domain":"algobench","max_experiments":3,"compute_minutes":1,"autostart":true}' \
+            http://127.0.0.1:8000/api/missions | python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])')
+          phase=RUNNING
+          for i in $(seq 1 180); do
+            phase=$(curl -fsS "http://127.0.0.1:8000/api/missions/$id" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("RUNNING" if d["run"]["running"] else d["phase"])')
+            [ "$phase" != "RUNNING" ] && break
+            sleep 1
+          done
+          echo "final phase: $phase"
+          [ "$phase" = "COMPLETED" ]
+          curl -fsS -X POST http://127.0.0.1:8000/api/missions/$id/verify | grep -q '"ok":true'
+      - name: Container logs
+        if: always()
+        run: docker logs atheryn-web || true

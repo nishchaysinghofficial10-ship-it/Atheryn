@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mission — ATHERYN</title>
+  <meta name="description" content="Mission control for an ATHERYN research mission: hypothesis ledger, results, experiments, critic attacks, decisions, timeline and dossier.">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta name="color-scheme" content="dark">
+  <meta name="atheryn-api" content="">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script src="/assets/js/boot.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
+  <script type="module" src="/assets/js/mission.js"></script>
+</head>
+<body class="page-mission">
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" data-nav>
+    <a class="nav__brand" href="/" aria-label="ATHERYN home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="23.2" cy="9.2" r="3.2" fill="currentColor"/></svg>
+      <span>ATHERYN</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/#method">Method</a>
+      <a href="/#evidence">Evidence</a>
+      <a href="/#archive">Missions</a>
+      <a href="/#lab">Lab</a>
+    </nav>
+    <div class="nav__status" data-engine-status data-state="pending">
+      <span class="dot" aria-hidden="true"></span><span data-engine-label>Connecting</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="mhead shell">
+      <a class="mhead__back" href="/#archive"><span aria-hidden="true">←</span> All missions</a>
+      <p class="eyebrow mhead__label" data-m-label>Mission</p>
+      <h1 class="mhead__q" data-m-question>Loading the mission record…</h1>
+      <div class="mhead__chips" data-m-chips></div>
+      <p class="mhead__stop" data-m-stop></p>
+    </header>
+
+    <div class="shell">
+      <div class="rail" aria-label="Lifecycle"><div class="rail__track" data-rail></div></div>
+
+      <div class="controls">
+        <button class="btn btn--primary btn--sm" type="button" data-act="run" hidden>Run mission <span class="btn__arrow" aria-hidden="true">→</span></button>
+        <button class="btn btn--ghost btn--sm" type="button" data-act="pause" hidden>Pause</button>
+        <button class="btn btn--ghost btn--sm" type="button" data-act="cancel" hidden>Cancel</button>
+        <button class="btn btn--ghost btn--sm" type="button" data-act="verify">Verify durable state</button>
+        <a class="btn btn--ghost btn--sm" data-act="fork" href="/#lab" hidden>Ask this yourself <span class="btn__arrow" aria-hidden="true">→</span></a>
+        <p class="controls__status" data-ctl-status role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="kpis" data-kpis></div>
+      <div class="budgets" data-budgets></div>
+
+      <div class="mlayout">
+        <nav class="toc" aria-label="Mission sections">
+          <ol>
+            <li><a href="#ledger">Hypothesis ledger</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#experiments">Experiments</a></li>
+            <li><a href="#critic">Critic</a></li>
+            <li><a href="#decisions">Decisions</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#dossier">Dossier</a></li>
+          </ol>
+        </nav>
+
+        <div>
+          <section class="msec" id="ledger" aria-labelledby="ledger-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="ledger-title">Hypothesis ledger</h2>
+              <p class="msec__note">Competing explanations, their machine-checkable predictions, and every status change on record.</p>
+            </div>
+            <div class="hyps" data-hyps><p class="empty">No hypotheses yet.</p></div>
+          </section>
+
+          <section class="msec" id="results" aria-labelledby="results-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="results-title">Results</h2>
+              <p class="msec__note">Measured at the largest tested size. Candidates that returned wrong answers are struck out and never ranked.</p>
+            </div>
+            <div class="results__bar" data-results-bar hidden>
+              <label class="select"><span class="sr-only">Experiment</span><select data-results-select></select></label>
+              <div class="toggle" data-metric-toggle hidden>
+                <button type="button" data-metric="mean_s" aria-pressed="true">Wall-clock</button>
+                <button type="button" data-metric="relaxations" aria-pressed="false">Relaxations · exact</button>
+              </div>
+              <span class="results__env" data-results-env></span>
+            </div>
+            <div class="chart" data-chart><p class="empty">No completed experiments yet.</p></div>
+            <div class="chart__legend" data-legend hidden>
+              <span><i style="background: var(--signal)"></i>leader among valid candidates</span>
+              <span><i style="background: var(--text-3)"></i>other candidates</span>
+              <span><i style="background: repeating-linear-gradient(-45deg, var(--st-rejected) 0 3px, transparent 3px 7px)"></i>incorrect output — excluded</span>
+              <span>— ±1 standard deviation</span>
+            </div>
+          </section>
+
+          <section class="msec" id="experiments" aria-labelledby="experiments-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="experiments-title">Experiments</h2>
+              <p class="msec__note">Each one keeps its generated code, seed, config, environment and raw results. Open one to read the exact code that ran.</p>
+            </div>
+            <div class="table-wrap">
+              <table class="xtable">
+                <thead><tr><th>ID</th><th>Experiment</th><th>Kind</th><th>Status</th><th>Duration</th><th><span class="sr-only">Open</span></th></tr></thead>
+                <tbody data-exps><tr><td colspan="6" class="empty">No experiments yet.</td></tr></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="msec" id="critic" aria-labelledby="critic-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="critic-title">Critic</h2>
+              <p class="msec__note">Falsification attacks, validity boundaries, contradictions — and the cautions the mission carries forward.</p>
+            </div>
+            <div class="cols">
+              <div>
+                <h4>Falsification attempts</h4>
+                <ul class="list" data-fals></ul>
+                <h4>Validity boundaries</h4>
+                <ul class="list" data-invalid></ul>
+                <h4>Contradictions</h4>
+                <ul class="list" data-contra></ul>
+              </div>
+              <div>
+                <h4>Cautions</h4>
+                <ul class="list" data-cautions></ul>
+                <h4>Recommended next investigations</h4>
+                <ul class="list" data-recs></ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="msec" id="decisions" aria-labelledby="decisions-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="decisions-title">Decisions</h2>
+              <p class="msec__note">Every choice the controller made, the options it scored, and why.</p>
+            </div>
+            <ul class="list" data-decisions></ul>
+          </section>
+
+          <section class="msec" id="timeline" aria-labelledby="timeline-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="timeline-title">Timeline</h2>
+              <p class="msec__note">The append-only event log, as written. Heartbeats are hidden.</p>
+            </div>
+            <div class="timeline__filters" data-filters role="group" aria-label="Filter events"></div>
+            <div class="timeline" data-timeline data-lenis-prevent tabindex="0" aria-label="Event log"><p class="empty">No events yet.</p></div>
+          </section>
+
+          <section class="msec" id="dossier" aria-labelledby="dossier-title">
+            <div class="msec__head">
+              <h2 class="msec__title" id="dossier-title">Dossier</h2>
+              <p class="msec__note">The traceable record ATHERYN writes from question to conclusion.</p>
+            </div>
+            <div class="dossier__wrap" data-dossier-wrap>
+              <article class="dossier" data-dossier><p class="empty">Loading the dossier…</p></article>
+            </div>
+            <button class="btn btn--ghost btn--sm dossier__more" type="button" data-dossier-more>Read the full dossier</button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="drawer" data-drawer aria-hidden="true">
+    <div class="drawer__scrim" data-drawer-close></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" data-lenis-prevent>
+      <button class="drawer__close" type="button" data-drawer-close aria-label="Close">×</button>
+      <div data-drawer-body></div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="shell footer__base mono">
+      <span>ATHERYN · MIT licensed</span>
+      <a href="/">Home</a>
+      <a href="https://github.com/nishchaysinghofficial10-ship-it/Atheryn" rel="noopener">Source</a>
+    </div>
+  </footer>
+</body>
+</html>

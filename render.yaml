@@ -1,0 +1,29 @@
+# Render Blueprint: New > Blueprint > pick this repository.
+# One Docker web service serves the site and the API from the same origin.
+services:
+  - type: web
+    name: atheryn
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # Leave unset for a public demo where anyone may start capped missions.
+      # Set it (in the dashboard) to require an access key for every change.
+      - key: ATHERYN_API_TOKEN
+        sync: false
+      - key: ATHERYN_MAX_CONCURRENT_RUNS
+        value: "1"
+      - key: ATHERYN_MAX_EXPERIMENTS
+        value: "12"
+      - key: ATHERYN_MAX_COMPUTE_MINUTES
+        value: "5"
+      - key: ATHERYN_ALLOWED_PROFILES
+        value: "fast,graph_fast"
+    # The free plan's filesystem is ephemeral: missions created on the server
+    # disappear on redeploy or restart. On a paid plan, attach a disk to keep them:
+    # disk:
+    #   name: atheryn-runs
+    #   mountPath: /data
+    #   sizeGB: 1
