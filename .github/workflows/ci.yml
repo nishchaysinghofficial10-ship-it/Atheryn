@@ -57,13 +57,15 @@ jobs:
       - name: Performance-reproducibility guarantees on the shipped flagship
         run: |
           set -euo pipefail
+          # Heredoc lines stay indented with the block: YAML strips the
+          # common indent, so bash still sees them (and PY) at column 0.
           EXP=$(python - <<'PY'
-from atheryn.state import ResearchState
-st = ResearchState.load("examples/flagship_run")
-print(next(r.id for r in st.experiments.values()
-           if r.design.get("kind") == "sweep" and r.status == "completed"))
-PY
-)
+          from atheryn.state import ResearchState
+          st = ResearchState.load("examples/flagship_run")
+          print(next(r.id for r in st.experiments.values()
+                     if r.design.get("kind") == "sweep" and r.status == "completed"))
+          PY
+          )
           echo "replaying $EXP — exact reproducibility is asserted, timing is not"
           python -m atheryn replay --dir examples/flagship_run --exp "$EXP"
 
@@ -73,11 +75,11 @@ PY
           cp -r examples/flagship_run "$RUNNER_TEMP/relocated_mission"
           python -m atheryn verify --dir "$RUNNER_TEMP/relocated_mission"
           EXP=$(python - <<'PY'
-from atheryn.state import ResearchState
-st = ResearchState.load("examples/flagship_run")
-print(next(r.id for r in st.experiments.values() if r.status == "completed"))
-PY
-)
+          from atheryn.state import ResearchState
+          st = ResearchState.load("examples/flagship_run")
+          print(next(r.id for r in st.experiments.values() if r.status == "completed"))
+          PY
+          )
           echo "replaying $EXP from the relocated copy"
           python -m atheryn replay --dir "$RUNNER_TEMP/relocated_mission" --exp "$EXP"
 
