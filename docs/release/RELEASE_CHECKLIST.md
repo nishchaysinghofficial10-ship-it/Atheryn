@@ -29,6 +29,11 @@ example mission they inspect is absent — they execute, and pass, when it is
 there. Both runs were real; 261 is the number for a complete checkout and is
 what the documentation quotes.
 
+> **Erratum on step 7.** The `REPLAY PASS` describes the 2.0.0 artifacts. The
+> v2.1.0 rename later edited every shipped runner, so v2.1.0 as published did
+> not replay until they were restored. See
+> `docs/verification/ERRATUM_RENAMED_EVIDENCE.md`.
+
 ## Repository hygiene
 
 - [x] No secrets in source, artifacts, logs, reports or history — scanned for

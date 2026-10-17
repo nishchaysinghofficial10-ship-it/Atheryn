@@ -17,6 +17,11 @@ single core.
 | `atheryn verify --dir examples/flagship_run` | State verified |
 | `atheryn replay --dir examples/flagship_run --exp …` | REPLAY PASS |
 
+> **Erratum.** The `REPLAY PASS` above describes the 2.0.0 artifacts. The
+> v2.1.0 rename later edited every shipped runner, so v2.1.0 as published did
+> not replay until they were restored. See
+> `docs/verification/ERRATUM_RENAMED_EVIDENCE.md`.
+
 Both defects were fixed with regression tests
 (`test_cli_survives_a_closed_pipe`, `test_dossier_reports_the_real_version`),
 and all shipped example dossiers were regenerated.

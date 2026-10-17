@@ -5,6 +5,18 @@ Entries stay short on purpose: say what changed, why it mattered, and where the 
 All notable changes. Every number here was produced by a command run at the
 commit it describes.
 
+## [Unreleased]
+
+### Fixed
+- **Shipped evidence edited by the v2.1.0 rename.** The ORIGIN → ATHERYN
+  find-and-replace also rewrote the recorded `run.py` of all 28 schema-v2
+  experiments under `examples/`, so every one failed `replay` ("experiment
+  code changed"). The original bytes are restored, and each now hashes to the
+  `code_digest` it recorded when it ran. Another 95 name-only edits to shipped
+  evidence are disclosed, not reverted. `tests/test_shipped_evidence.py` checks
+  every shipped digest on any platform. Details:
+  `docs/verification/ERRATUM_RENAMED_EVIDENCE.md`.
+
 ## [2.1.0] — architecture gaps closed, live autonomous retrieval
 
 **268 tests**, CPython 3.10–3.14 on Linux x86-64.
